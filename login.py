@@ -42,7 +42,7 @@ class LOG():
             time.sleep(0.5)
             self.driver.find_element_by_xpath(
                 '//*[@id="app"]/div/div[2]/div[2]/div[2]/div[3]/div[3]/div[2]/div/div/div/img') \
-                .screenshot(u"D:\自动打卡\自动打卡\catcha.png")
+                .screenshot(u"D:\自动打卡\Wechat sign_in\catcha.png")
             self.driver.find_element_by_xpath('//input[@placeholder="请输入验证码"]').send_keys(sv.main_verify('catcha.png'))
             time.sleep(0.5)
             self.driver.find_element_by_xpath('/html/body/div/div/div[2]/div[2]/div[2]/div[3]/button').click()  # 点击登录
