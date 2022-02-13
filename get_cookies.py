@@ -51,13 +51,23 @@ class LOG():
             if self.driver.current_url == self.target:
                 print('correct')
                 break
-            print('wrong')
+            else:
+                print('wrong verification code' )
             if statue == 50:
                 print('[%s] (%s) 请检查账号密码，或稍后再试！' % eval(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
                 self.driver.quit()
                 return 1  # 超时返回值
-        time.sleep(100)
+        orCookies=self.driver.get_cookies()
+        cookies=[]
+        for item in orCookies:
+            cookies.append(item['name']+'='+item['value'])
+        cookies.insert(0,cookies.pop())
+        return cookies
 
-if __name__ == '__main__':
-    new=LOG()
-    new.log()
+def Cookie():
+    l=LOG()
+    cookie=l.log()
+    print(cookie)
+    return cookie
+# if __name__=='__main__':
+#     Cookie()
