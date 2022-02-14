@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 import requests
 import datetime
 import time
-from selenium import webdriver
-from . import get_cookies as gc
+import Config
+import get_cookies as gc
 
 today = datetime.date.today()
 date = "%4d%02d%02d" % (today.year, today.month, today.day)
@@ -11,13 +12,15 @@ now = datetime.time()
 class Auto:
     def __init__(self):
         self.url="https://wfw.scu.edu.cn/ncov/wap/default/save"
-        self.headers={
+    def set_headers(self):
+        cookie=gc.Cookie()
+        self.headers = {
             "Accept": "application / json, text / javascript, * / *; q = 0.01",
             "Accept - Encoding": "gzip, deflate, br",
             "Accept - Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
             "User - Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 NetType/WIFI MicroMessenger/7.0.20.1781(0x6700143B) WindowsWechat(0x6305002e)",
             "X - Requested - With": "XMLHttpRequest",
-            "Cookie": "eai-sess=3bpau43ev8ehb5ikir0m22otq4; UUkey=ca156130eb489acc3c29addcd08ebd6f; Hm_lvt_48b682d4885d22a90111e46b972e3268=1642522672,1643213781,1643559301,1644163012; Hm_lpvt_48b682d4885d22a90111e46b972e3268=1644163389",
+            "Cookie": cookie,
             "Content - Length": "2910",
             "Content - Type": "application / x - www - form - urlencoded; charset = UTF - 8",
             "Referer": "https: // wfw.scu.edu.cn / ncov / wap / default / index",
@@ -28,10 +31,12 @@ class Auto:
             "Connection": "keep - alive",
             "Host": "wfw.scu.edu.cn",
         }
-        self.body = "{}"
-        self.data={
+    def set_data(self):
+        id=Config.read_id()
+        uid = Config.read_uid()
+        self.data = {
             'date': date,
-            'uid': '148083',
+            'uid': uid,
             'created': createTime,
             'sfzx': '1',  # 是否在校
             'szxqmc': '望江校区',  # 所在校区 （华西校区， 江安校区， 望江校区）
@@ -42,7 +47,7 @@ class Auto:
             'province': '四川省',
             'city': '成都市',
             'zgfxdq': '0',  # 今日是否在中高风险地区？（中高风险地区信息可通过国务院客户端小程序实时查询）
-            'tw': '4',  # 体温 （1-9， 1：35℃以下， 2：35℃-36.5℃， 3：36.6℃-36.9℃， 4： 37℃-37.3℃）
+            'tw': '3',  # 体温 （1-9， 1：35℃以下， 2：35℃-36.5℃， 3：36.6℃-36.9℃， 4： 37℃-37.3℃）
             'sfcxtz': '0',  # 今日是否出现发热、乏力、干咳、呼吸困难等症状？
             'sfyyjc': '0',  # 是否到相关医院或门诊检查？
             'sfjcbh': '0',  # 今日是否接触无症状感染/疑似/确诊人群？
@@ -63,7 +68,7 @@ class Auto:
             'remark': '',
             'sfjcwhry': '0',
             'sfjchbry': '0',
-            'bztcyy': '5',
+            'bztcyy': '',
             'sftjhb': '0',
             'sftjwh': '0',
             'szcs': '',
@@ -76,8 +81,7 @@ class Auto:
             'sqhzjkkys': '',
             'sfygtjzzfj': '0',
             'gtjzzfjsj': '',
-            'fxyy': '学习',
-            'id': '22500922',
+            'id': id,
             'gwszdd': '',
             'sfyqjzgc': '',
             'jrsfqzys': '',
@@ -88,21 +92,18 @@ class Auto:
 
     def run(self):
         print(self.data)
-        res = requests.post(self.url, headers=self.headers,data=self.data)
-        try:
-            res.encoding='utf-8'
-            pattern1 = '成功'
-            pattern2='今天已经填报了'
-            if pattern2 in res.text:
-                print("今天已经填报了")
-            elif pattern1 in res.text:
-                print("填报完成")
-            else:
+        res = requests.post(self.url,headers=self.headers,data=self.data)
+        if res.status_code==200:
+            try:
+                res.encoding = 'utf-8'
+                print(res.json()['m'])
+            except:
                 pass
-
-        except:
-         pass
+        else:
+            print("连接错误")
 if __name__ == "__main__":
     #print(time.strftime("%Y%m%d"))
     uses = Auto()
+    uses.set_headers()
+    uses.set_data()
     uses.run()

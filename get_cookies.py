@@ -14,10 +14,6 @@ class LOG():
         self.password = cg.read_passwd()  # 密码
         self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(10)
-        # self.lat = lat  # 纬度
-        # self.long = long  # 经度
-        # self.path = path
-
     def log(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
@@ -58,6 +54,7 @@ class LOG():
                 self.driver.quit()
                 return 1  # 超时返回值
         orCookies=self.driver.get_cookies()
+        self.driver.quit()
         cookies=[]
         for item in orCookies:
             cookies.append(item['name']+'='+item['value'])
@@ -66,7 +63,10 @@ class LOG():
 
 def Cookie():
     l=LOG()
-    cookie=l.log()
+    raw_cookie=l.log()
+    cookie=raw_cookie[0]
+    for i in range(1,len(raw_cookie)):
+        cookie=cookie+'; '+str(raw_cookie[i])
     print(cookie)
     return cookie
 # if __name__=='__main__':

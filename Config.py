@@ -23,3 +23,10 @@ def read_passwd():
     pasword= config.get('usr', 'password')
     return pasword
 
+def read_uid():
+    uid= config.get('uid', 'UID')
+    return uid
+
+def read_id():
+    id = config.get('uid', 'ID')
+    return id
