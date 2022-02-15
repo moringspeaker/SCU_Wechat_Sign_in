@@ -1,0 +1,40 @@
+name: Wechat_sign_in_SCU
+on:
+  push:
+  schedule:
+    - cron: '* * 1 * * ? '
+
+  workflow_dispatch:
+
+jobs:
+  job1:
+    name: sign in Wechat
+    build:
+      runs-on: windows-latest
+      steps:
+#安装chrome
+        - name: Install Chrome
+          uses: browser-actions/setup-chrome@latest
+        - run: chrome --version
+          with:
+          chrome-version: latest
+#安装Python环境
+        - name: Set up Python 3.9
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.6'
+            architecture: 'x64'
+        - run: python my_script.py
+#checkout 自己的代码
+        - uses: actions/checkout@v2
+#安装配置文件
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+#开始运行自己的代码
+        - name: Run my program
+          run: |
+            cd SCU_Wechat_Sign_in
+            python post.py
+
