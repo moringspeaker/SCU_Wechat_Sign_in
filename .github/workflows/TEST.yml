@@ -29,7 +29,7 @@ jobs:
 
       # 安装chrome
       - name: Install Chrome
-      - uses: browser-actions/setup-chrome@latest
+        uses: browser-actions/setup-chrome@latest
       - run: chrome --version
 
       # Runs a set of commands using the runners shell
