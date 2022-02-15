@@ -20,6 +20,7 @@ class LOG():
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument('--no-sandbox')
+        self.driver= webdriver.Chrome(executable_path="./chromedriver/chromedriver.exe", chrome_options=chrome_options)
         self.driver.get(self.target)
         statue=0
         while True:
@@ -41,7 +42,8 @@ class LOG():
                 .screenshot(u"D:\自动打卡\Wechat sign_in\catcha.png")
             self.driver.find_element_by_xpath('//input[@placeholder="请输入验证码"]').send_keys(sv.main_verify('catcha.png'))
             time.sleep(0.5)
-            self.driver.find_element_by_xpath('/html/body/div/div/div[2]/div[2]/div[2]/div[3]/button').click()  # 点击登录
+            log_element=self.driver.find_element_by_xpath('/html/body/div/div/div[2]/div[2]/div[2]/div[3]/button')
+            self.driver.execute_script("arguments[0].click();",log_element)# 点击登录
             # 检测是否成功登录
             statue += 1
             if self.driver.current_url == self.target:

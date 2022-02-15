@@ -3,7 +3,7 @@ import configparser
 config=configparser.ConfigParser()
 #读取配置文件
 filenam='config.ini'
-config.read(filenam,encoding='utf-8')
+config.read(filenam,encoding='gb2312')
 all_sections=config.sections()
 print('sections:',all_sections)
 
@@ -30,3 +30,19 @@ def read_uid():
 def read_id():
     id = config.get('uid', 'ID')
     return id
+
+def read_campus():
+    campus=config.get('location','szxqmc')
+    return campus
+
+def read_address():
+    address=config.get('location','address')
+    return address
+
+def read_geo():
+    geo=config.get('location','geo_api_info')
+    return geo
+
+def read_area():
+    area=config.get('location','area')
+    return area

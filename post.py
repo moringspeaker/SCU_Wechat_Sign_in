@@ -34,16 +34,20 @@ class Auto:
     def set_data(self):
         id=Config.read_id()
         uid = Config.read_uid()
+        campus=Config.read_campus()
+        address=Config.read_address()
+        geo=Config.read_geo()
+        area=Config.read_area()
         self.data = {
             'date': date,
             'uid': uid,
             'created': createTime,
             'sfzx': '1',  # 是否在校
-            'szxqmc': '望江校区',  # 所在校区 （华西校区， 江安校区， 望江校区）
+            'szxqmc': campus,  # 所在校区 （华西校区， 江安校区， 望江校区）
             'bzxyy': '',  # 不在校原因 （1-6）
-            'address': '四川省成都市武侯区望江路街道四川大学四川大学望江校区',
-            'geo_api_info': '{"type":"complete","info":"SUCCESS","status":1,"$Da":"jsonp_303061_","position":{"Q":30.63073,"R":104.08733000000001,"lng":104.08733,"lat":30.63073},"message":"Get ipLocation success.Get address success.","location_type":"ip","accuracy":null,"isConverted":true,"addressComponent":{"citycode":"028","adcode":"510107","businessAreas":[{"name":"小天竺","id":"510107","location":{"Q":30.639354,"R":104.06894199999999,"lng":104.068942,"lat":30.639354}}],"neighborhoodType":"科教文化服务;学校;高等院校","neighborhood":"四川大学","building":"","buildingType":"","street":"望江路","streetNumber":"29号","country":"中国","province":"四川省","city":"成都市","district":"武侯区","township":"望江路街道"},"formattedAddress":"四川省成都市武侯区望江路街道四川大学四川大学望江校区","roads":[],"crosses":[],"pois":[]}',
-            'area': '四川省 成都市 武侯区',  # 位置
+            'address': address,
+            'geo_api_info': geo,
+            'area': area,  # 位置
             'province': '四川省',
             'city': '成都市',
             'zgfxdq': '0',  # 今日是否在中高风险地区？（中高风险地区信息可通过国务院客户端小程序实时查询）
@@ -78,6 +82,8 @@ class Auto:
             'sfjcqz': '',
             'szsqsfybl': '0',
             'sfsqhzjkk': '0',
+            'sfjzdszxgym':'',
+            'sfjzxgym':'',
             'sqhzjkkys': '',
             'sfygtjzzfj': '0',
             'gtjzzfjsj': '',
@@ -98,12 +104,15 @@ class Auto:
                 res.encoding = 'utf-8'
                 print(res.json()['m'])
             except:
-                pass
+                print('未知错误')
         else:
-            print("连接错误")
-if __name__ == "__main__":
+            print("连接错误:",res.status_code)
+def main():
     #print(time.strftime("%Y%m%d"))
     uses = Auto()
     uses.set_headers()
     uses.set_data()
     uses.run()
+
+if __name__=='__main__':
+    main()
