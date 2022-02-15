@@ -4,8 +4,6 @@ on:
   schedule:
     - cron: '* * 1 * * ? '
 
-  workflow_dispatch:
-
 jobs:
   job1:
     name: sign in Wechat
