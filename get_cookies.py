@@ -45,7 +45,7 @@ class LOG():
             verification_element.send_keys(sv.main_verify(base_code))
             time.sleep(0.5)
             log_element=self.driver.find_element_by_xpath('/html/body/div/div/div[2]/div[2]/div[2]/div[3]/button')
-            log_element.click()# 点击登录
+            self.driver.execute_script("arguments[0].click();", log_element)
             # 检测是否成功登录
             statue += 1
             if self.driver.current_url == self.target:
