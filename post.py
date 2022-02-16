@@ -100,7 +100,6 @@ class Auto:
     def run(self):
         # print (json.dumps(self.data, encoding='UTF-8', ensure_ascii=False))
         res = requests.post(self.url,headers=self.headers,data=self.data)
-        print(res.json())
         if res.status_code==200 and res.json()['m']=='已经填报了':
             print ('success!')
             # try:
