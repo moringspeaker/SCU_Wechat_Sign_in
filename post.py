@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import requests
 import datetime
 import time
@@ -97,7 +98,7 @@ class Auto:
         }
 
     def run(self):
-        print(self.data)
+        # print (json.dumps(self.data, encoding='UTF-8', ensure_ascii=False))
         res = requests.post(self.url,headers=self.headers,data=self.data)
         if res.status_code==200:
             try:
