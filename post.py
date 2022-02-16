@@ -101,12 +101,13 @@ class Auto:
         # print (json.dumps(self.data, encoding='UTF-8', ensure_ascii=False))
         res = requests.post(self.url,headers=self.headers,data=self.data)
         print(res.json())
-        if res.status_code==200:
-            try:
-                res.encoding = 'utf-8'
-                print(res.json()['m'])
-            except:
-                print('unkown error')
+        if res.status_code==200 and res.json()['m']=='已经填报了':
+            print ('success!')
+            # try:
+            #     res.encoding = 'utf-8'
+            #     print(res.json()['m'])
+            # except:
+            #     print('unkown error')
         else:
             print("connection error:",res.status_code)
 def main():
