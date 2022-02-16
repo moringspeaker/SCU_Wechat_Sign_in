@@ -20,7 +20,7 @@ class LOG():
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument('--no-sandbox')
-        self.driver= webdriver.Chrome(executable_path="./chromedriver/chromedriver.exe", chrome_options=chrome_options)
+        self.driver= webdriver.Chrome()
         self.driver.get(self.target)
         statue=0
         while True:
@@ -33,17 +33,19 @@ class LOG():
             except:
                 print("失败")
                 return -1
-            self.driver.find_element_by_xpath('//input[@placeholder="请输入学号/工号"]').send_keys(self.username)
+            input_elements = self.driver.find_elements_by_tag_name('input')
+            username_element, password_element, verification_element = input_elements
+            username_element.send_keys(self.username)#填用户名
             time.sleep(0.5)
-            self.driver.find_element_by_xpath('//input[@placeholder="请输入密码"]').send_keys(self.password)
+            password_element.send_keys(self.password)#填密码
             time.sleep(0.5)
-            self.driver.find_element_by_xpath(
+            base_code=self.driver.find_element_by_xpath(
                 '//*[@id="app"]/div/div[2]/div[2]/div[2]/div[3]/div[3]/div[2]/div/div/div/img') \
-                .screenshot(u"D:\自动打卡\Wechat sign_in\catcha.png")
-            self.driver.find_element_by_xpath('//input[@placeholder="请输入验证码"]').send_keys(sv.main_verify('catcha.png'))
+                .screenshot_as_base64
+            verification_element.send_keys(sv.main_verify(base_code))
             time.sleep(0.5)
             log_element=self.driver.find_element_by_xpath('/html/body/div/div/div[2]/div[2]/div[2]/div[3]/button')
-            self.driver.execute_script("arguments[0].click();",log_element)# 点击登录
+            log_element.click()# 点击登录
             # 检测是否成功登录
             statue += 1
             if self.driver.current_url == self.target:
@@ -71,5 +73,5 @@ def Cookie():
         cookie=cookie+'; '+str(raw_cookie[i])
     print(cookie)
     return cookie
-# if __name__=='__main__':
-#     Cookie()
+if __name__=='__main__':
+    Cookie()

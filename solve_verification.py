@@ -31,9 +31,8 @@ class Verify:
         #TOKEN start
         self.TOKEN_URL = 'https://aip.baidubce.com/oauth/2.0/token'
 
-    def set(self,img_path,url):
+    def set(self,url):
         self.url = url
-        self.img_path = img_path
     """"
         读取token
     """
@@ -67,17 +66,17 @@ class Verify:
     """
         读取文件
     """
-    def read_file(self):
-        f = None
-        try:
-            f = open(self.img_path, 'rb')
-            return f.read()
-        except:
-            print('read image file fail')
-            return None
-        finally:
-            if f:
-                f.close()
+    # def read_file(self):
+    #     f = None
+    #     try:
+    #         f = open(self.img_path, 'rb')
+    #         return f.read()
+    #     except:
+    #         print('read image file fail')
+    #         return None
+    #     finally:
+    #         if f:
+    #             f.close()
 
     """
         调用远程服务
@@ -94,20 +93,20 @@ class Verify:
         except  URLError as err:
             print(err)
 
-def main_verify(imgpath):
+def main_verify(image):
     Ver=Verify()
     # 获取access token
     token = Ver.fetch_token()
 
     # 拼接通用文字识别高精度url
     image_url = Ver.OCR_URL + "?access_token=" + token
-    Ver.set(imgpath,image_url)
+    Ver.set(image_url)
     text = ""
 
     # 读取测试图片
-    file_content = Ver.read_file()
+    file_content = image
     # 调用文字识别服务
-    result = Ver.request(urlencode({'image': base64.b64encode(file_content)}))
+    result = Ver.request(urlencode({'image': file_content}))
 
     # 解析返回结果
     result_json = json.loads(result)
