@@ -105,9 +105,9 @@ class Auto:
                 res.encoding = 'utf-8'
                 print(res.json()['m'])
             except:
-                print('未知错误')
+                print('unkown error')
         else:
-            print("连接错误:",res.status_code)
+            print("connection error:",res.status_code)
 def main():
     #print(time.strftime("%Y%m%d"))
     uses = Auto()
