@@ -42,6 +42,4 @@ jobs:
             python -m pip install --upgrade pip
             pip install -r requirements.txt
       - name: run_my_program
-        run: |
-            cd SCU_Wechat_Sign_in
-            python post.py
+        run: python post.py
