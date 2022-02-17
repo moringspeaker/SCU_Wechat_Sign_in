@@ -6,10 +6,15 @@ import time
 import Config
 import get_cookies as gc
 
+
 today = datetime.date.today()
 date = "%4d%02d%02d" % (today.year, today.month, today.day)
 createTime = round(time.time())
 now = datetime.time()
+def write_txt(message):
+    with open('result.txt','w') as f:
+        f.write(message)
+
 class Auto:
     def __init__(self):
         self.url="https://wfw.scu.edu.cn/ncov/wap/default/save"
@@ -100,8 +105,19 @@ class Auto:
     def run(self):
         # print (json.dumps(self.data, encoding='UTF-8', ensure_ascii=False))
         res = requests.post(self.url,headers=self.headers,data=self.data)
-        if res.status_code==200 and res.json()['m']=='已经填报了':
-            print ('success!')
+        pattern1='成功'
+        pattern2='已经填报'
+        pattern3='失效'
+        if res.status_code==200:
+            if pattern1 in res.text:
+                mes=res.text+'SUCCESS!'
+                write_txt(mes)
+            elif pattern2 in res.text:
+                mes = res.text + 'Already done!'
+                write_txt(mes)
+            else:
+                mes = res.text + 'ERROR!'
+                write_txt(mes)
             # try:
             #     res.encoding = 'utf-8'
             #     print(res.json()['m'])
