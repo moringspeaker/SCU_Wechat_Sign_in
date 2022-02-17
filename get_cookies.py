@@ -6,12 +6,13 @@ from selenium.webdriver.support import expected_conditions as ec
 import time
 import solve_verification as sv
 import Config as cg
+import os
 
 class LOG():
     def __init__(self):
         self.target = 'https://wfw.scu.edu.cn/ncov/wap/default/index'  # 微服务地址
-        self.username = cg.read_username()  # 用户名
-        self.password = cg.read_passwd()  # 密码
+        self.username = os.environ['USR_NAME']  # 用户名
+        self.password = os.environ['PASSWD']  # 密码
         self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(10)
     def log(self):
@@ -46,6 +47,7 @@ class LOG():
             time.sleep(0.5)
             log_element=self.driver.find_element_by_xpath('/html/body/div/div/div[2]/div[2]/div[2]/div[3]/button')
             self.driver.execute_script("arguments[0].click();", log_element)
+            # log_element.click()
             # 检测是否成功登录
             statue += 1
             if self.driver.current_url == self.target:

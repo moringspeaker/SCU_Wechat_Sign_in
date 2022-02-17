@@ -47,6 +47,9 @@ jobs:
             python -m pip install --upgrade pip
             pip install -r requirements.txt
       - name: run_my_program
+        env:
+          PASSWD: ${{WECHAT_PASSWD}}
+          USR_NAME: ${{WECHAT_USR_NAME}}
         run: python post.py
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
