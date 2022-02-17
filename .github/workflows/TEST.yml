@@ -48,8 +48,8 @@ jobs:
             pip install -r requirements.txt
       - name: run_my_program
         env:
-          PASSWD: ${{WECHAT_PASSWD}}
-          USR_NAME: ${{WECHAT_USR_NAME}}
+          PASSWD: ${{ secrets.WECHAT_PASSWD }}
+          USR_NAME: ${{ secrets.WECHAT_USR_NAME }}
         run: python post.py
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
