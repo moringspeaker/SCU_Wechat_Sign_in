@@ -48,3 +48,15 @@ jobs:
             pip install -r requirements.txt
       - name: run_my_program
         run: python post.py
+      - name: 'Send mail'
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.163.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Daka result
+          body: file://result.txt
+          to: 1549159420@qq.com
+          from: GitHub Actions
+          content_type: text/plain
