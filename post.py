@@ -12,7 +12,7 @@ date = "%4d%02d%02d" % (today.year, today.month, today.day)
 createTime = round(time.time())
 now = datetime.time()
 def write_txt(message):
-    with open('result.txt','w') as f:
+    with open('result.txt','w',encoding='utf8') as f:
         f.write(message)
 
 class Auto:
