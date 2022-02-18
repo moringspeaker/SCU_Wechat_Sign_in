@@ -26,10 +26,11 @@
 >>本项目采用GitAction实现自动打卡功能，在_TEST.yml_文件里设置了详细的自动运行的actions工作流，如果感兴趣可以自行了解（顺便吐槽一下GitAction真的太难debug了，以后还是不用了）
 
 **详细配置**：  
->你可以在：  
+>你可以在_TSET.yml_中的：  
 
     schedule:
         - cron: '0 1 * * *'
   
 这里修改详细的时间段，注意Github的官方时间比北京时间慢了8小时，所以我设置的一点就是北京时间的九点
-
+同样地，你也可以自行配置_config.ini_中的_geo_api_info_,这里可以参考[somenothing](https://github.com/somenothing/SCU-ncov_checkpoint)大佬使用的方法获取虚拟的地理位置，  
+也可以自行使用高德地图的api获取信息并直接填到_config.ini_中
