@@ -21,9 +21,13 @@
 >
 >>**第二步**设置github repository secret：  
 >>
-你一共需要设置四个secret key,如果你不需要每天在打卡后通过邮件得知自己的打卡状况的话可以不设置mail开头的两个secret,并且删除_TEST.yml_文件后面关于发邮件的Action  
+你一共需要设置四个secret key,如果你不需要每天在打卡后通过邮件得知自己的打卡状况的话可以不设置mail开头的两个secret  
 
-注意设置一个**_WECHAT_USR_NAME_**的secret,这是你的微信小程序登录帐户名也就是你的**学号**，另一个设置**WECHAT_PASSWD**的secret,这是你的**微信小程序登录密码**  
+并且删除_TEST.yml_文件后面关于发邮件的Action  
+
+注意设置一个**_WECHAT_USR_NAME_**的secret,这是你的微信小程序登录帐户名也就是你的**学号**，另一个设置**WECHAT_PASSWD**的  
+
+secret,这是你的**微信小程序登录密码**  
 
 ###接下来就可以快速开始打卡了（只支持江安校区的打卡模板，需要的可以自行修改，因为一些众所周知的原因，这里不提供其他的打卡模板）  
 
@@ -52,6 +56,8 @@
     schedule:
         - cron: '0 1 * * *'
   
-这里修改详细的时间段，注意Github的官方时间比北京时间慢了8小时，所以我设置的一点就是北京时间的九点
+这里修改详细的时间段，注意Github的官方时间比北京时间慢了8小时，所以我设置的一点就是北京时间的九点  
+
 同样地，你也可以自行配置_config.ini_中的_geo_api_info_,这里可以参考[somenothing](https://github.com/somenothing/SCU-ncov_checkpoint)大佬使用的方法获取虚拟的地理位置，  
+
 也可以自行使用高德地图的api获取信息并直接填到_config.ini_中
