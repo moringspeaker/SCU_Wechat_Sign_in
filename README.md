@@ -27,7 +27,9 @@
 
 **详细配置**：  
 >你可以在：  
-> $\color{yellow}{schedule:}$
-    $\color{yellow}{- cron: '0}$$\color{red}{ 1 }$$\color{yellow}{* * *'}$  
+> '''python
+>  schedule:
+    - cron: '0 1 * * *'
+ '''
 >这里修改详细的时间段，注意Github的官方时间比北京时间慢了8小时，所以我设置的一点就是北京时间的九点
 >
