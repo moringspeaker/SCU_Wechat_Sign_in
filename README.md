@@ -53,9 +53,9 @@
 >
 >我感觉更方便简洁，同时使用别人写好的发送邮件的Action，如果你要使用发送邮件的功能，你需要自己去选择自己的邮箱，打开  
 
-**POP3/SMTP服务**,并且将自己邮箱的  
+>**POP3/SMTP服务**,并且将自己邮箱的  
 
-邮箱登录账号和开启**POP3/SMTP服务**后获得的密码分别设置为**MAIL_USERNAME**和**MAIL_PASSWORD**，设置方法同上。
+>邮箱登录账号和开启**POP3/SMTP服务**后获得的密码分别设置为**MAIL_USERNAME**和**MAIL_PASSWORD**，设置方法同上。
 
 >>本项目采用GitAction实现自动打卡功能，在_TEST.yml_文件里设置了详细的自动运行的actions工作流，如果感兴趣可以自行了解（顺便吐槽一下GitAction真的太难debug了，以后还是不用了）  
 >>
