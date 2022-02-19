@@ -13,6 +13,8 @@
 >
 >然后就是使用Fiddler抓包，获取你的uid和id  
 >
+>![image](https://github.com/moringspeaker/SCU_Wechat_Sign_in/blob/master/image/fiddler_catch.png)
+>
 >之后就是在post.py里找到uid和id，修改成你的对应id即可  
 >
 >同样地：  
