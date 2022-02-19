@@ -29,7 +29,7 @@
 >>
 >>并且删除_TEST.yml_文件后面关于发邮件的Action  
 >>
->>注意设置一个**_WECHAT_USR_NAME_**的secret,这是你的微信小程序登录帐户名也就是你的**学号**，另一个设置**WECHAT_PASSWD**的  
+>>注意设置一个**WECHAT_USR_NAME**的secret,这是你的微信小程序登录帐户名也就是你的**学号**，另一个设置**WECHAT_PASSWD**的  
 >>
 >>secret,这是你的**微信小程序登录密码**  
 
