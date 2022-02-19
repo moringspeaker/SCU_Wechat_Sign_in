@@ -21,6 +21,8 @@
 >
 >你也可以使用浏览器做到这一点，使用Chrome或其他浏览器的Network查看发送包的信息  
 >
+>![image](https://github.com/moringspeaker/SCU_Wechat_Sign_in/blob/master/image/chrome_catch1.png)
+>![image](https://github.com/moringspeaker/SCU_Wechat_Sign_in/blob/master/image/chrome_catch2.png)
 >>**第二步**设置github repository secret：  
 >>
 >>你一共需要设置四个secret key,如果你不需要每天在打卡后通过邮件得知自己的打卡状况的话可以不设置mail开头的两个secret  
