@@ -51,15 +51,20 @@ jobs:
           PASSWD: ${{ secrets.WECHAT_PASSWD }}
           USR_NAME: ${{ secrets.WECHAT_USR_NAME }}
         run: python post.py
-      - name: 'Send mail'
-        uses: dawidd6/action-send-mail@master
+      - name: Send email
+        uses: devellany/send-mailer@v1.0.2
         with:
-          server_address: smtp.163.com
-          server_port: 465
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
+          host: mtp.163.com
+      # Optional port (defaults to 465)
+          port: 465
+          account: ${{ secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          sender: Guchenyu
+          from: GitHub Actions
+          to: 1549159420@qq.com
           subject: Daka result
           body: file://result.txt
-          to: 1549159420@qq.com
-          from: GitHub Actions
-          content_type: text/plain
+      # Optional content type (defaults to text/plain)
+          contentType: text/plain
+      # Optional attachment files (JSON type. require property 'path')
+          attachments: ''
