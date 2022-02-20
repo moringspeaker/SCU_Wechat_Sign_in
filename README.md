@@ -13,23 +13,27 @@
 >
 >然后就是使用Fiddler抓包，获取你的uid和id  
 >
+>![image](https://github.com/moringspeaker/SCU_Wechat_Sign_in/blob/master/image/fiddler_catch.png)
+>
 >之后就是在post.py里找到uid和id，修改成你的对应id即可  
 >
 >同样地：  
 >
 >你也可以使用浏览器做到这一点，使用Chrome或其他浏览器的Network查看发送包的信息  
 >
+>![image](https://github.com/moringspeaker/SCU_Wechat_Sign_in/blob/master/image/chrome_catch1.png)
+>![image](https://github.com/moringspeaker/SCU_Wechat_Sign_in/blob/master/image/chrome_catch2.png)
 >>**第二步**设置github repository secret：  
 >>
 >>你一共需要设置四个secret key,如果你不需要每天在打卡后通过邮件得知自己的打卡状况的话可以不设置mail开头的两个secret  
 >>
 >>并且删除_TEST.yml_文件后面关于发邮件的Action  
 >>
->>注意设置一个**_WECHAT_USR_NAME_**的secret,这是你的微信小程序登录帐户名也就是你的**学号**，另一个设置**WECHAT_PASSWD**的  
+>>注意设置一个**WECHAT_USR_NAME**的secret,这是你的微信小程序登录帐户名也就是你的**学号**，另一个设置**WECHAT_PASSWD**的  
 >>
 >>secret,这是你的**微信小程序登录密码**  
 
-###接下来就可以快速开始打卡了（只支持江安校区的打卡模板，因为一些众所周知的原因，这里不提供其他的打卡模板）  
+接下来就可以快速开始打卡了（只支持江安校区的打卡模板，因为一些众所周知的原因，这里不提供其他的打卡模板）  
 
 **开发原理**： 
 ---
@@ -49,9 +53,9 @@
 >
 >我感觉更方便简洁，同时使用别人写好的发送邮件的Action，如果你要使用发送邮件的功能，你需要自己去选择自己的邮箱，打开  
 
-**POP3/SMTP服务**,并且将自己邮箱的  
+>**POP3/SMTP服务**,并且将自己邮箱的  
 
-邮箱登录账号和开启**POP3/SMTP服务**后获得的密码分别设置为**MAIL_USERNAME**和**MAIL_PASSWORD**，设置方法同上。
+>邮箱登录账号和开启**POP3/SMTP服务**后获得的密码分别设置为**MAIL_USERNAME**和**MAIL_PASSWORD**，设置方法同上。
 
 >>本项目采用GitAction实现自动打卡功能，在_TEST.yml_文件里设置了详细的自动运行的actions工作流，如果感兴趣可以自行了解（顺便吐槽一下GitAction真的太难debug了，以后还是不用了）  
 >>
