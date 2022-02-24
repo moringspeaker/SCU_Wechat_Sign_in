@@ -56,7 +56,7 @@ class LOG():
             else:
                 print('wrong verification code' )
             if statue == 50:
-                print('[%s] (%s) 请检查账号密码，或稍后再试！' % eval(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+                print('[%s] (%s) Please check the account and retry it later！' % eval(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
                 self.driver.quit()
                 return 1  # 超时返回值
         orCookies=self.driver.get_cookies()
