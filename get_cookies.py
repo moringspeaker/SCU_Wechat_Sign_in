@@ -32,7 +32,7 @@ class LOG():
                 )
                 switch_element.click()
             except:
-                print("失败")
+                print("Fail")
                 return -1
             input_elements = self.driver.find_elements_by_tag_name('input')
             username_element, password_element, verification_element = input_elements
