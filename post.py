@@ -15,11 +15,15 @@ def write_txt(message):
     with open('result.txt','w',encoding='utf8') as f:
         f.write(message)
 
+def read_cokkie():
+    with open('cookie.txt','r',encoding='utf8') as f:
+        re=f.read()
+        return re
 class Auto:
     def __init__(self):
         self.url="https://wfw.scu.edu.cn/ncov/wap/default/save"
     def set_headers(self):
-        cookie=gc.Cookie()
+        cookie=read_cokkie()
         self.headers = {
             "Accept": "application / json, text / javascript, * / *; q = 0.01",
             "Accept - Encoding": "gzip, deflate, br",
@@ -114,7 +118,12 @@ class Auto:
         pattern2='已经填报'
         pattern3='失效'
         if res.status_code==200:
-            if pattern1 in res.text:
+            if pattern3 in res.text:
+                self.headers["Cookie"]=gc.Cookie()
+                res = requests.post(self.url, headers=self.headers, data=self.data)
+                mes = res.text
+                write_txt(mes)
+            elif pattern1 in res.text:
                 mes=res.text+'SUCCESS!'
                 write_txt(mes)
             elif pattern2 in res.text:

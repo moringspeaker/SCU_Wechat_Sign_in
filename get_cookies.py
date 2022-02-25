@@ -75,13 +75,14 @@ class LOG():
 def Cookie():
     l=LOG()
     raw_cookie=l.log()
-    if raw_cookie!=1 or raw_cookie!=-1:
+    if raw_cookie!=1 and raw_cookie!=-1:
         cookie=raw_cookie[0]
     else:
         exit(0)
     for i in range(1,len(raw_cookie)):
         cookie=cookie+'; '+str(raw_cookie[i])
-    print(cookie)
+    with open('cookie.txt', 'w', encoding='utf8') as f:
+        f.write(cookie)
     return cookie
 if __name__=='__main__':
     Cookie()
