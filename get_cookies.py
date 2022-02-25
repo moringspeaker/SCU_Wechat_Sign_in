@@ -14,6 +14,8 @@ class LOG():
         self.target = 'https://wfw.scu.edu.cn/ncov/wap/default/index'  # 微服务地址
         self.username = os.environ['USR_NAME']  # 用户名
         self.password = os.environ['PASSWD']  # 密码
+        # self.username = '2018141461169'  # 用户名
+        # self.password = 'gcy@211139902'  # 密码
         self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(10)
     def log(self):
@@ -33,8 +35,9 @@ class LOG():
                 )
                 switch_element.click()
             except:
-                print("Fail")
-                return -1
+                # print("Fail")
+                # return -1
+                pass
             input_elements = self.driver.find_elements_by_tag_name('input')
             username_element, password_element, verification_element = input_elements
             username_element.send_keys(self.username)#填用户名
@@ -59,7 +62,8 @@ class LOG():
             if statue == 50:
                 print('[%s] (%s) Please check the account and retry it later！' % eval(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
                 self.driver.quit()
-                return 1  # 超时返回值
+                # return 1  # 超时返回值
+                exit(0)
         orCookies=self.driver.get_cookies()
         self.driver.quit()
         cookies=[]
@@ -71,7 +75,10 @@ class LOG():
 def Cookie():
     l=LOG()
     raw_cookie=l.log()
-    cookie=raw_cookie[0]
+    if raw_cookie!=1 or raw_cookie!=-1:
+        cookie=raw_cookie[0]
+    else:
+        exit(0)
     for i in range(1,len(raw_cookie)):
         cookie=cookie+'; '+str(raw_cookie[i])
     print(cookie)
